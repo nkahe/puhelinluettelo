@@ -1,4 +1,4 @@
-const NumberList = ({ persons, filter}) => {
+const NumberList = ({ persons, filter }) => {
 
   let listedPersons = persons;
   if (filter.length > 0 ) {
