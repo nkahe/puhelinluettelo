@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AddNumberForm from './components/AddNumberForm';
 import NumberList from './components/NumberList';
 
 const App = () => {
@@ -9,9 +10,15 @@ const App = () => {
     { name: 'Mary Poppendieck', number: '39-23-6423122' }
   ]);
 
-  const [listedPersons, setListedPersons] = useState(persons);
-  const [newName, setNewName] = useState('');
-  const [newNumber, setNewNumber] = useState('');
+  // const [ listedPersons, setListedPersons ] = useState(persons);
+  const [ filter, setFilter ] = useState('');
+  const [ newName, setNewName ] = useState('');
+  const [ newNumber, setNewNumber ] = useState('');
+
+  const changeFilter = (event) => {
+    const newFilter = event.target.value;
+    setFilter(newFilter);
+  }
 
   const addName = (event) => {
     event.preventDefault();
@@ -32,13 +39,6 @@ const App = () => {
     setNewNumber('');
   }
 
-  const changeFilter = (event) => {
-    const filter = event.target.value;
-    const newListedPersons = persons.filter(person =>
-      person.name.toLowerCase().includes(filter));
-    setListedPersons(newListedPersons);
-  }
-
   return (
     <div>
       <h1>Phonebook</h1>
@@ -47,25 +47,16 @@ const App = () => {
 
       <h2>Add new</h2>
 
-      <form onSubmit={addName}>
-        <div>
-          name:
-          <input  onChange={(event) => setNewName(event.target.value)}
-                  value={newName}
-          /><br />
-          puh:
-          <input onChange={(event) => setNewNumber(event.target.value)}
-                 value={newNumber}
-          />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <AddNumberForm  addName={ addName }
+                      newName={ newName }
+                      setNewName={ setNewName }
+                      newNumber={ newNumber }
+                      setNewNumber={ setNewNumber }
+      />
 
       <h2>Numbers</h2>
       
-      <NumberList listedPersons={listedPersons}/>
+      <NumberList persons={persons} filter={filter}/>
 
     </div>
   )
