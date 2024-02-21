@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import NumberList from './components/NumberList';
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -42,9 +43,7 @@ const App = () => {
     <div>
       <h1>Phonebook</h1>
 
-      <p>
-        filter shown with <input onChange={changeFilter}/>
-      </p>
+      <p>filter shown with <input onChange={changeFilter}/></p>
 
       <h2>Add new</h2>
 
@@ -66,14 +65,8 @@ const App = () => {
 
       <h2>Numbers</h2>
       
-        {
-          listedPersons.map((person) => (
-            <p key={person.name}>{person.name}, {person.number}
-            </p>
-          ))
-        }
+      <NumberList listedPersons={listedPersons}/>
 
-      {/* <div>debug: {newName}</div> */}
     </div>
   )
 
