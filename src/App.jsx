@@ -3,10 +3,11 @@ import axios from 'axios';
 
 import AddNumberForm from './components/AddNumberForm';
 import NumberList from './components/NumberList';
+import numberService from './services/numbers';
 
 const App = () => {
 
-  const [persons, setPersons] = useState([]);
+  const [ persons, setPersons ] = useState([]);
   const [ filter, setFilter ] = useState('');
 
   // Tekstikenttien käsittelyyn.
@@ -14,9 +15,9 @@ const App = () => {
   const [ newNumber, setNewNumber ] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:3002/persons')
+    numberService.getAll()
       .then(res => {
-        setPersons(res.data);
+        setPersons(res);
       });
   }, []);
 
@@ -39,9 +40,15 @@ const App = () => {
       return;
     }
 
-    setPersons(persons.concat(newPerson));
-    setNewName('');
-    setNewNumber('');
+    numberService.add(newPerson)
+      .then(res => {
+        setPersons(persons.concat(res));
+        // setPersons(persons.concat(newPerson));
+        setNewName('');
+        setNewNumber('');
+      }).catch( err => {
+        alert(`jokin meni vikaan`);
+      });
   }
 
   return (
