@@ -26,7 +26,7 @@ const App = () => {
     setFilter(newFilter);
   }
 
-  const addName = (event) => {
+  const addPerson = (event) => {
     event.preventDefault();
     const newPerson = {
       name: newName,
@@ -51,6 +51,17 @@ const App = () => {
       });
   }
 
+  const removePerson = (id) => {
+    numberService.remove(id)
+      .then(res => {
+        console.log('Poiston vastaus', res);
+        const newPersons = persons.filter(person => (
+          person.id !== res.id
+        ));
+        setPersons(newPersons);
+      })
+  }
+
   return (
     <div>
       <h1>Phonebook</h1>
@@ -59,7 +70,7 @@ const App = () => {
 
       <h2>Add new</h2>
 
-      <AddNumberForm  addName={ addName }
+      <AddNumberForm  addName={ addPerson }
                       newName={ newName }
                       setNewName={ setNewName }
                       newNumber={ newNumber }
@@ -68,7 +79,7 @@ const App = () => {
 
       <h2>Numbers</h2>
       
-      <NumberList persons={persons} filter={filter}/>
+      <NumberList persons={persons} filter={filter} removePerson={removePerson}/>
 
     </div>
   )

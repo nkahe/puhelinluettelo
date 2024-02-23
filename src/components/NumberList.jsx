@@ -1,20 +1,11 @@
 import numberService from '../services/numbers';
 
-const NumberList = ({ persons, filter }) => {
+const NumberList = ({ persons, filter, removePerson }) => {
 
   let listedPersons = persons;
-  console.log('listed: ', listedPersons);
   if (filter.length > 0 ) {
     listedPersons = persons.filter(person =>
       person.name.toLowerCase().includes(filter));
-  }
-
-  const removePerson = (id) => {
-    numberService.remove(id)
-      .then(res => {
-        console.log('Poiston vastaus', res);
-
-      })
   }
 
   return (
