@@ -52,6 +52,13 @@ const App = () => {
   }
 
   const removePerson = (id) => {
+
+    const person = persons.find(person => person.id === id);
+
+    if (!window.confirm(`Really want to delete "${person.name}"?`)) {
+      return
+    }
+
     numberService.remove(id)
       .then(res => {
         console.log('Poiston vastaus', res);
