@@ -12,9 +12,14 @@ const add = (newPerson) => {
   return req.then(res => res.data);
 }
 
+const change = (person) => {
+  const req = axios.put(`${baseUrl}/${person.id}`, person);
+  return req.then(res => res.data);
+}
+
 const remove = (id) => {
   const req = axios.delete(baseUrl + '/' + id);
   return req.then(res => res.data);
 }
 
-export default { getAll, add, remove }
+export default { getAll, add, change, remove }

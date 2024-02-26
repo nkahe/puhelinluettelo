@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import AddNumberForm from './components/AddNumberForm';
 import NumberList from './components/NumberList';
@@ -34,16 +33,27 @@ const App = () => {
     }
 
     const personExists = persons.some(person => person.name === newName);
-
     if (personExists) {
-      alert(`${newName} is already in phonebook`);
+      // alert(`${newName} is already in phonebook`);
+      const changedPerson = persons.find(person => person.name === newName);
+      changedPerson.number = newNumber;
+      numberService.change(changedPerson)
+        .then(newPersonInfo => {
+          const newPersons = persons;
+          const index = newPersons.findIndex(person => person.name === newName);
+          if (index !== -1) {
+            newPersons[index] = newPersonInfo;
+            setPersons[newPersons];
+          }
+          setNewName('');
+          setNewNumber('');
+        })
       return;
     }
 
     numberService.add(newPerson)
       .then(res => {
         setPersons(persons.concat(res));
-        // setPersons(persons.concat(newPerson));
         setNewName('');
         setNewNumber('');
       }).catch( err => {
@@ -61,7 +71,6 @@ const App = () => {
 
     numberService.remove(id)
       .then(res => {
-        console.log('Poiston vastaus', res);
         const newPersons = persons.filter(person => (
           person.id !== res.id
         ));
