@@ -4,10 +4,23 @@ import AddNumberForm from './components/AddNumberForm';
 import NumberList from './components/NumberList';
 import numberService from './services/numbers';
 
+const Notification = ({ message }) => {
+  if (message === null) {
+    return null
+  }
+
+  return (
+    <div className="notification">
+      {message}
+    </div>
+  )
+}
+
 const App = () => {
 
   const [ persons, setPersons ] = useState([]);
   const [ filter, setFilter ] = useState('');
+  const [ message, setMessage ] = useState(null);
 
   // Tekstikenttien käsittelyyn.
   const [ newName, setNewName ] = useState('');
@@ -45,6 +58,10 @@ const App = () => {
             newPersons[index] = newPersonInfo;
             setPersons[newPersons];
           }
+          setMessage(`Person's ${changedPerson.name} number changed to ${newNumber}.`);
+          setTimeout(() => {
+            setMessage(null);
+          }, 5000);
           setNewName('');
           setNewNumber('');
         })
@@ -54,9 +71,13 @@ const App = () => {
     numberService.add(newPerson)
       .then(res => {
         setPersons(persons.concat(res));
+        setMessage(`Person ${res.name} added.`);
+        setTimeout(() => {
+          setMessage(null);
+        }, 5000);
         setNewName('');
         setNewNumber('');
-      }).catch( err => {
+      }).catch(() => {
         alert(`jokin meni vikaan`);
       });
   }
@@ -75,12 +96,18 @@ const App = () => {
           person.id !== res.id
         ));
         setPersons(newPersons);
+        setMessage(`Person ${res.name} removed.`);
+        setTimeout(() => {
+          setMessage(null);
+        }, 5000);
       })
   }
 
   return (
     <div>
       <h1>Phonebook</h1>
+
+      <Notification message={ message }/>
 
       <p>filter shown with <input onChange={changeFilter}/></p>
 
