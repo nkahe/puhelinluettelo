@@ -8,9 +8,19 @@ const Notification = ({ message }) => {
   if (message === null) {
     return null
   }
-
   return (
     <div className="notification">
+      {message}
+    </div>
+  )
+}
+
+const ErrorMessage = ({ message }) => {
+  if (message === null) {
+    return null
+  }
+  return (
+    <div className="error">
       {message}
     </div>
   )
@@ -21,6 +31,7 @@ const App = () => {
   const [ persons, setPersons ] = useState([]);
   const [ filter, setFilter ] = useState('');
   const [ message, setMessage ] = useState(null);
+  const [ error, setError] = useState(null);
 
   // Tekstikenttien käsittelyyn.
   const [ newName, setNewName ] = useState('');
@@ -64,7 +75,12 @@ const App = () => {
           }, 5000);
           setNewName('');
           setNewNumber('');
-        })
+        }).catch(() => {
+          setError(`Person's ${changedPerson.name} <<<not>>> found.`);
+          setTimeout(() => {
+            setError(null);
+          }, 5000);
+        });
       return;
     }
 
