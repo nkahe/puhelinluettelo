@@ -1,3 +1,5 @@
+// Tämä on harjoituksissa tehty ohjelma.
+
 import { useEffect, useState } from 'react';
 
 import AddNumberForm from './components/AddNumberForm';
@@ -99,6 +101,7 @@ const App = () => {
   }
 
   const removePerson = (id) => {
+    console.log(persons);
 
     const person = persons.find(person => person.id === id);
 
@@ -108,6 +111,7 @@ const App = () => {
 
     numberService.remove(id)
       .then(res => {
+        console.log('Saatiin vastaus: ', res);
         const newPersons = persons.filter(person => (
           person.id !== res.id
         ));
