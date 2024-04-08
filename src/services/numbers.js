@@ -20,7 +20,11 @@ const change = (person) => {
 
 const remove = (id) => {
   const req = axios.delete(baseUrl + '/' + id);
-  return req.then(res => res.data);
+  
+  return req.then(res => {
+    console.log('number service, remove result: ', res);
+    return res.data
+  });
 }
 
 export default { getAll, add, change, remove }
