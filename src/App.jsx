@@ -95,8 +95,20 @@ const App = () => {
         }, 5000);
         setNewName('');
         setNewNumber('');
-      }).catch(() => {
-        alert(`jokin meni vikaan`);
+      }).catch(error => {
+
+        if (error.message) {
+          setMessage(`Adding a new person failed: ${error.message}.`);
+          setTimeout(() => {
+            setError(null);
+          }, 5000);
+        } else {
+          setMessage(`Adding a new person failed.`);
+          setTimeout(() => {
+            setError(null);
+          }, 5000);
+        }
+        
       });
   }
 
