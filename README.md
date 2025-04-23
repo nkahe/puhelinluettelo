@@ -5,4 +5,6 @@ Tämä on simppeli Puhelinluettelo -sovelluksen Reactilla tehty front-end, jonka
 
 Back-endin olen tehnyt Node.js:llä ja tiedot tallennetaan MongoDB -tietokantaan.
 
+[Linkki back-endiin](https://github.com/nkahe/puhelinluettelo-backend)
+
 [Linkki Renderissä hostaamaani instanssiin](https://puhelinluettelo-backend-egxf.onrender.com) . Ulkonäkö on karu sillä tehtävässä on keskitytty vain Reactin opetteluun.
