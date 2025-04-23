@@ -108,7 +108,7 @@ const App = () => {
             setError(null);
           }, 5000);
         }
-        
+
       });
   }
 
@@ -152,7 +152,7 @@ const App = () => {
       />
 
       <h2>Numbers</h2>
-      
+
       <NumberList persons={persons} filter={filter} removePerson={removePerson}/>
 
     </div>
