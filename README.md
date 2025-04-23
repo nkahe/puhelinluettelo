@@ -1,11 +1,8 @@
 
-[Linkki sovellukseen](https://puhelinluettelo-backend-egxf.onrender.com)
+# Puhelinluettelo -harjoitus
 
-## React + Vite
+Tämä on simppeli Puhelinluettelo -sovelluksen Reactilla tehty front-end, jonka olen tehnyt Helsinki Full Stack Open MOOC -kurssin harjoituksena. Sovelluksessa voi lisätä, poistaa ja filtteröidä henkilöiden puhelinluettelossa olevia nimiä ja puhelinnumeroita.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Back-endin olen tehnyt Node.js:llä ja tiedot tallennetaan MongoDB -tietokantaan.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Linkki Renderissä hostaamaani instanssiin](https://puhelinluettelo-backend-egxf.onrender.com) . Ulkonäkö on karu sillä tehtävässä on keskitytty vain Reactin opetteluun.
